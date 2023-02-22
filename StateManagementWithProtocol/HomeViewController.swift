@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class HomeViewController: UIViewController, ProductSelectionDelegate, AddToBasketDelegate {
+class HomeViewController: UIViewController{
 
     // MARK: -Define
     
@@ -94,17 +94,6 @@ class HomeViewController: UIViewController, ProductSelectionDelegate, AddToBaske
         addToBasketVC.sheetPresentationController?.prefersGrabberVisible = true
         present(addToBasketVC, animated: true)
     }
-    
-    // MARK: -ProductSelectionDelegate Function
-    func didSelectProduct(name: String, imageName: String) {
-        lblTitle.text = name
-        imgViewProduct.image = UIImage(named: imageName)
-    }
-    
-    // MARK: -AddToBasketDelegate Function
-    func didSelectPiece(piece: String) {
-        btnBasket.setTitle(piece, for: .normal)
-    }
 }
 
 // MARK: -Constraints
@@ -142,5 +131,20 @@ extension UIView{
         view.addSubview(self)
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+    }
+}
+
+// MARK: -ProductSelectionDelegate Functions
+extension HomeViewController: ProductSelectionDelegate{
+    func didSelectProduct(name: String, imageName: String) {
+        lblTitle.text = name
+        imgViewProduct.image = UIImage(named: imageName)
+    }
+}
+
+// MARK: -AddToBasketDelegate Function
+extension HomeViewController: AddToBasketDelegate{
+    func didSelectPiece(piece: String) {
+        btnBasket.setTitle(piece, for: .normal)
     }
 }
