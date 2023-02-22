@@ -26,7 +26,12 @@ class HomeViewController: UIViewController {
     
     var btnBottomSheet: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Choose Product", for: .normal)
+        btn.setTitle("  Choose Product", for: .normal)
+        btn.setImage(UIImage(systemName: "apple.logo"), for: .normal)
+        btn.tintColor = .white
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .systemBlue
+        btn.setTitleColor(.white, for: .normal)
         return btn
     }()
     
@@ -37,9 +42,17 @@ class HomeViewController: UIViewController {
         
         imgViewProduct.imgViewProductConstraints(view)
         lblTitle.lblTitleConstraints(view, imgView: imgViewProduct)
+        btnBottomSheet.btnBottomSheetConstraints(view)
+        
+        btnBottomSheet.addTarget(self, action: #selector(btnBottomSheetTarget), for: .touchUpInside)
+    }
+    
+    @objc func btnBottomSheetTarget(){
+        
     }
 }
 
+// MARK: -Constraints
 extension UIView{
     func imgViewProductConstraints(_ view: UIView){
         view.addSubview(self)
@@ -52,5 +65,13 @@ extension UIView{
         view.addSubview(self)
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         topAnchor.constraint(equalTo: imgView.bottomAnchor).isActive = true
+    }
+    
+    func btnBottomSheetConstraints(_ view: UIView){
+        view.addSubview(self)
+        centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.85).isActive = true
+        heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.05).isActive = true
     }
 }
