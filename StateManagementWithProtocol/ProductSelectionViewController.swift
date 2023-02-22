@@ -70,14 +70,17 @@ class ProductSelectionViewController: UIViewController {
     }
     
     @objc func btnIphoneTarget(){
+        delegate?.didSelectProduct(name: "Iphone", imageName: "iphone")
         dismiss(animated: true)
     }
     
     @objc func btnIpadTarget(){
+        delegate?.didSelectProduct(name: "Ipad", imageName: "ipad")
         dismiss(animated: true)
     }
     
     @objc func btnMacbookTarget(){
+        delegate?.didSelectProduct(name: "Macbook", imageName: "mac")
         dismiss(animated: true)
     }
 }

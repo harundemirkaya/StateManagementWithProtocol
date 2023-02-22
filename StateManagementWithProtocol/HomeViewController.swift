@@ -41,8 +41,8 @@ class HomeViewController: UIViewController, ProductSelectionDelegate {
         view.backgroundColor = .white
         
         imgViewProduct.imgViewProductConstraints(view)
-        lblTitle.lblTitleConstraints(view, imgView: imgViewProduct)
         btnBottomSheet.btnBottomSheetConstraints(view)
+        lblTitle.lblTitleConstraints(view, btn: btnBottomSheet)
         
         btnBottomSheet.addTarget(self, action: #selector(btnBottomSheetTarget), for: .touchUpInside)
     }
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController, ProductSelectionDelegate {
     // MARK: Delegate Function
     func didSelectProduct(name: String, imageName: String) {
         lblTitle.text = name
-        imgViewProduct.image = UIImage(systemName: imageName)
+        imgViewProduct.image = UIImage(named: imageName)
     }
 }
 
@@ -73,10 +73,10 @@ extension UIView{
         widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.85).isActive = true
     }
     
-    func lblTitleConstraints(_ view: UIView, imgView: UIImageView){
+    func lblTitleConstraints(_ view: UIView, btn: UIButton){
         view.addSubview(self)
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        topAnchor.constraint(equalTo: imgView.bottomAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: btn.topAnchor, constant: -10).isActive = true
     }
     
     func btnBottomSheetConstraints(_ view: UIView){
