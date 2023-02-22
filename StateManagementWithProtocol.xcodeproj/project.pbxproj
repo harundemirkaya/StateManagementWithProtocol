@@ -13,6 +13,7 @@
 		4F65DADE29A5EB8C0004251D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F65DADD29A5EB8C0004251D /* Assets.xcassets */; };
 		4F65DAE129A5EB8C0004251D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F65DADF29A5EB8C0004251D /* LaunchScreen.storyboard */; };
 		4F65DAE929A5F4850004251D /* ProductSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F65DAE829A5F4850004251D /* ProductSelectionViewController.swift */; };
+		4F65DAED29A63D680004251D /* AddToBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F65DAEC29A63D680004251D /* AddToBasketViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4F65DAE029A5EB8C0004251D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F65DAE229A5EB8C0004251D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F65DAE829A5F4850004251D /* ProductSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionViewController.swift; sourceTree = "<group>"; };
+		4F65DAEC29A63D680004251D /* AddToBasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBasketViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				4F65DAD629A5EB8B0004251D /* SceneDelegate.swift */,
 				4F65DAD829A5EB8B0004251D /* HomeViewController.swift */,
 				4F65DAE829A5F4850004251D /* ProductSelectionViewController.swift */,
+				4F65DAEC29A63D680004251D /* AddToBasketViewController.swift */,
 				4F65DADD29A5EB8C0004251D /* Assets.xcassets */,
 				4F65DADF29A5EB8C0004251D /* LaunchScreen.storyboard */,
 				4F65DAE229A5EB8C0004251D /* Info.plist */,
@@ -141,6 +144,7 @@
 				4F65DAE929A5F4850004251D /* ProductSelectionViewController.swift in Sources */,
 				4F65DAD529A5EB8B0004251D /* AppDelegate.swift in Sources */,
 				4F65DAD729A5EB8B0004251D /* SceneDelegate.swift in Sources */,
+				4F65DAED29A63D680004251D /* AddToBasketViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

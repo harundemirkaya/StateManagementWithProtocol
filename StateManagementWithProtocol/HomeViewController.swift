@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class HomeViewController: UIViewController, ProductSelectionDelegate {
+class HomeViewController: UIViewController, ProductSelectionDelegate, AddToBasketDelegate {
 
     // MARK: -Define
     
@@ -24,14 +24,39 @@ class HomeViewController: UIViewController, ProductSelectionDelegate {
         return lbl
     }()
     
-    var btnBottomSheet: UIButton = {
+    var btnProductSelectionBottomSheet: UIButton = {
         let btn = UIButton()
         btn.setTitle("  Choose Product", for: .normal)
         btn.setImage(UIImage(systemName: "apple.logo"), for: .normal)
-        btn.tintColor = .white
+        btn.tintColor = .systemBlue
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = .systemBlue
-        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = .systemBlue.withAlphaComponent(0.4)
+        btn.setTitleColor(.systemBlue, for: .normal)
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
+    
+    var btnAddBottomSheet: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("  Add to Basket", for: .normal)
+        btn.setImage(UIImage(systemName: "basket"), for: .normal)
+        btn.tintColor = .systemBlue
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .systemBlue.withAlphaComponent(0.4)
+        btn.setTitleColor(.systemBlue, for: .normal)
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
+    
+    var btnBasket: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("0", for: .normal)
+        btn.setImage(UIImage(systemName: "basket"), for: .normal)
+        btn.tintColor = .black
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .clear
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 10
         return btn
     }()
     
@@ -41,13 +66,16 @@ class HomeViewController: UIViewController, ProductSelectionDelegate {
         view.backgroundColor = .white
         
         imgViewProduct.imgViewProductConstraints(view)
-        btnBottomSheet.btnBottomSheetConstraints(view)
-        lblTitle.lblTitleConstraints(view, btn: btnBottomSheet)
+        btnProductSelectionBottomSheet.btnBottomSheetConstraints(view)
+        btnAddBottomSheet.btnAddConstraints(view, btn: btnProductSelectionBottomSheet)
+        lblTitle.lblTitleConstraints(view, btn: btnAddBottomSheet)
+        btnBasket.btnBasketConstraints(view)
         
-        btnBottomSheet.addTarget(self, action: #selector(btnBottomSheetTarget), for: .touchUpInside)
+        btnProductSelectionBottomSheet.addTarget(self, action: #selector(btnProductSelectionBottomSheetTarget), for: .touchUpInside)
+        btnAddBottomSheet.addTarget(self, action: #selector(btnAddBottomSheetTarget), for: .touchUpInside)
     }
     
-    @objc func btnBottomSheetTarget(){
+    @objc func btnProductSelectionBottomSheetTarget(){
         let productSelectionVC = ProductSelectionViewController()
         productSelectionVC.delegate = self
         
@@ -57,10 +85,25 @@ class HomeViewController: UIViewController, ProductSelectionDelegate {
         present(productSelectionVC, animated: true)
     }
     
-    // MARK: Delegate Function
+    @objc func btnAddBottomSheetTarget(){
+        let addToBasketVC = AddToBasketViewController()
+        addToBasketVC.delegate = self
+        
+        addToBasketVC.modalPresentationStyle = .pageSheet
+        addToBasketVC.sheetPresentationController?.detents = [.medium()]
+        addToBasketVC.sheetPresentationController?.prefersGrabberVisible = true
+        present(addToBasketVC, animated: true)
+    }
+    
+    // MARK: -ProductSelectionDelegate Function
     func didSelectProduct(name: String, imageName: String) {
         lblTitle.text = name
         imgViewProduct.image = UIImage(named: imageName)
+    }
+    
+    // MARK: -AddToBasketDelegate Function
+    func didSelectPiece(piece: String) {
+        btnBasket.setTitle(piece, for: .normal)
     }
 }
 
@@ -85,5 +128,19 @@ extension UIView{
         bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.85).isActive = true
         heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.05).isActive = true
+    }
+    
+    func btnAddConstraints(_ view: UIView, btn: UIButton){
+        view.addSubview(self)
+        centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: btn.topAnchor, constant: -10).isActive = true
+        widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.85).isActive = true
+        heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.05).isActive = true
+    }
+    
+    func btnBasketConstraints(_ view: UIView){
+        view.addSubview(self)
+        centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
     }
 }

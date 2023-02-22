@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ProductSelectionDelegate{
+protocol ProductSelectionDelegate: AnyObject{
     func didSelectProduct(name: String, imageName: String)
 }
 
@@ -51,7 +51,7 @@ class ProductSelectionViewController: UIViewController {
         return btn
     }()
     
-    var delegate: ProductSelectionDelegate?
+    weak var delegate: ProductSelectionDelegate?
     
     // MARK: -ViewDidLoad
     override func viewDidLoad() {
