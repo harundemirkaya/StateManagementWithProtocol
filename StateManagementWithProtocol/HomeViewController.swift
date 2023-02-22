@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ProductSelectionDelegate {
 
     // MARK: -Define
     
@@ -48,7 +48,19 @@ class HomeViewController: UIViewController {
     }
     
     @objc func btnBottomSheetTarget(){
+        let productSelectionVC = ProductSelectionViewController()
+        productSelectionVC.delegate = self
         
+        productSelectionVC.modalPresentationStyle = .pageSheet
+        productSelectionVC.sheetPresentationController?.detents = [.medium()]
+        productSelectionVC.sheetPresentationController?.prefersGrabberVisible = true
+        present(productSelectionVC, animated: true)
+    }
+    
+    // MARK: Delegate Function
+    func didSelectProduct(name: String, imageName: String) {
+        lblTitle.text = name
+        imgViewProduct.image = UIImage(systemName: imageName)
     }
 }
 
